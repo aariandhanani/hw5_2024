@@ -1,0 +1,171 @@
+/* Setting up the animation to start at 0 opacity and a width of 25px and end at 1 opacity and a width of 475px. */
+/* Will be used for the logo. */
+@keyframes mymove {
+    0%   {opacity: 0; width: 25px;}
+    100% {opacity: 1; width: 475px;}
+}
+
+#logo {
+    /* 5 second animation */
+    animation: mymove 5s;
+}
+
+body{
+    /* font set to Poppins with sans-serif as a backup */
+    font-family: "Poppins", sans-serif;
+    /* bg image set to the concrete image */
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+header{
+    /* set display type to flex and have the direction set to column so that the logo is above the nav links */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav_links {
+    /* set the flex direction to column so that the nav links are displayed vertically */
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    /* set the link color to blue so that it's blue even after being visited */
+    color: blue;
+}
+
+.card > header {
+    /* Formatting for the cards */
+    background-color: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.card {
+    /* Formatting for the whitespace under the cards */
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+
+    /* Size for the cards */
+    flex-grow: 0px;
+    flex-shrink: 0px;
+    flex-basis: 450px;
+}
+
+.pricing {
+    /* Ensure the pricing is centered vertically and horizontally */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery > img {
+    /* image styling */
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+.gallery {
+    /* image formatting */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* for larger screens (this is a mobile first website) */
+@media screen and (min-width: 900px) {
+
+    /* Make the navbar sticky */
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        /* align-items: start; */
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    /* Make the rest of the headers not sticky */
+    main {
+        /* add padding so that the navbar doesnt cover content to begin with */
+        padding-top: 100px;
+        header {
+            position: static;
+            top: auto;
+            width: auto;
+        }
+    }
+
+    /* spread the links out horizontally */
+    .nav_links {
+        flex-direction: row;
+    }
+
+    /* .pricing {
+    } */
+
+    /* make the cards smaller */
+    .card {
+        flex-basis: 275px;
+    }
+}
+
+/* remove the animation if reduce motion is on */
+@media (prefers-reduced-motion) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* print layout */
+@media print {
+    body {
+        font-family: Arial, Helvetica;
+        background-image: none;
+    }
+
+    /* change the nav link style */
+    .nav_links {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-basis: 100%;
+        flex-wrap: wrap;
+    }
+
+    /* align the bottom of the cards */
+    .pricing {
+        align-items: end;
+        flex-wrap: nowrap;
+    }
+
+    /* adjustments to the card size and format */
+    .card {
+        border: 2px solid #45ADDD;
+        flex-basis: 325px;
+        flex-wrap: nowrap;
+    }
+
+    /* remove the gallery */
+    #gallery {
+        display: none;
+    }
+
+    .gallery {
+        display: none;
+    }
+
+    main {
+        /* add the thumbs up */
+        li:nth-child(2)::after {
+            content:"👍";
+        }
+    }
+}
